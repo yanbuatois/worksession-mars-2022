@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/blood.css">
+		<link rel="stylesheet" href="dist/theme/adikts.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -16,45 +16,512 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-				<section data-auto-animate>
-					<pre data-id="jsx-block" class="javascript">
-						<code data-trim data-line-numbers="1-8" >
-							<script type="text/template">
-								const helloWorld = React.createElement('body', null,
-									React.createElement('h1', null, 'Hello World !'),
-									React.createElement('p', null, 'Hello world in JavaScript !'),
-									React.createElement('img', {
-										src: 'assets/helloworld.jpg',
-										alt: 'Hello world !',
-									})
-								)
-							</script>
-						</code>
-					</pre>
+				<section>
+					<section>
+						<h1>Tour d'horizon du développement web frontend</h1>
+						<a href="https://www.adikts.io/" target="_blank">
+							<img src="assets/logo-tagline.png" alt="Adikts">
+						</a>
+					</section>
+					<section>
+						<h4>Tour d'horizon du développement web frontend</h4>
+						<ul>
+							<li class="fragment">Un peu d'histoire...
+								<ul>
+									<li class="fragment">Les débuts du web</li>
+									<li class="fragment">Et Javascript dans tout ça ?</li>
+								</ul>
+							</li>
+							<li class="fragment">Le contexte frontend et ses particularités</li>
+							<li class="fragment">Présentation de Javascript
+								<ul>
+									<li class="fragment">Les spécificités du langage</li>
+									<li class="fragment">La norme ECMAScript</li>
+									<li class="fragment">Quelques "alternatives"</li>
+								</ul>
+							</li>
+							<li class="fragment">Frameworks populaires
+								<ul>
+									<li class="fragment">React</li>
+									<li class="fragment">Angular</li>
+									<li class="fragment">Vue.js</li>
+								</ul>
+							</li>
+							<li class="fragment">Javascript et le frontend du futur...</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Rapide introduction</h3>
+					</section>
 				</section>
-				<section data-auto-animate>
-					<pre data-id="jsx-block" class="javascript">
-						<code data-trim data-line-numbers="10-14">
-							<script type="text/template">
-								const helloWorld = React.createElement('body', null,
+				<section>
+					<section>
+						<h2>Un peu d'histoire....</h2>
+						<div class="r-stretch">
+							<img src="assets/thierry-lhermitte-internet.jpg" alt="Formation multimédia à Internet avec Thierry Lhermitte" class="fragment">
+						</div>
+					</section>
+					<section>
+						<h3>Les débuts du web</h3>
+						<ul>
+							<li class="fragment">
+								<strong>1990&nbsp;:&nbsp;</strong>HTTP/0.9 et HTML
+							</li>
+							<li class="fragment">
+								<strong>1994-1995&nbsp;:&nbsp;</strong>Sortie des premiers grands navigateurs, avec Netscape, IE, et première sortie de Javascript.
+							</li>
+							<li class="fragment">
+								<strong>1996&nbsp;:&nbsp;</strong>Arrivée de HTTP/1.0 et de CSS
+							</li>
+							<li class="fragment">
+								<strong>1997&nbsp;:&nbsp;</strong>La standardisation commence avec l'arrivée de HTTP/1.1 et du premier standard ECMAScript 1.0
+							</li>
+							<li class="fragment">
+								<strong>1999&nbsp;:&nbsp;</strong>Sortie d'ActiveX pour le web avec IE5. La «&nbsp;guerre des navigateurs&nbsp;» fait rage.
+							</li>
+						</ul>
+						<aside class="notes">
+							En 1990, HTTP 0.9 est la première sortie, elle prend ce nom postérieurement et permet uniquement de récupérer une page HTML.
+							À partir de là, le standard n'est que peu défini, il faut attendre 93 pour avoir un standard HTML viable, chaque navigateur implémente un peu les choses comme il veut, et les navigateurs étaient très basiques. Par exemple Lynx ou <strong>NCSA Mosaic</strong>, un des premiers navigateurs graphiques, et un de ceux qui a permis de rendre le web célèbre.
+							Netscape arrive en 94, IE en 95, la guerre des navigateurs commence peu après
+						</aside>
+					</section>
+					<section>
+						<h3>Et Javascript dans tout ça ?</h3>
+						<div class="r-stack">
+							<ul>
+								<li data-fragment-index="0" class="fragment"><strong>1995&nbsp;:&nbsp;</strong>Première sortie de JavaScript dans Netscape</li>
+								<li data-fragment-index="1" class="fragment"><strong>1996&nbsp;:&nbsp;</strong>Microsoft copie ça et intègre JScript à IE</li>
+								<li data-fragment-index="4" class="fragment"><strong>1997&nbsp;:&nbsp;</strong>Standardisation de Javascript par l'ECMA sous le standard ECMAScript 1.0</li>
+								<li data-fragment-index="5" class="fragment"><strong>1998&nbsp;:&nbsp;</strong>Sortie d'ECMAScript 2</li>
+								<li data-fragment-index="6" class="fragment"><strong>1999&nbsp;:&nbsp;</strong>Sortie d'ES3</li>
+								<li data-fragment-index="7" class="fragment"><strong>2000&nbsp;:&nbsp;</strong>Début des travaux sur ES4</li>
+								<li data-fragment-index="8" class="fragment"><strong>2009&nbsp;:&nbsp;</strong>Abandon d'ES4 et arrivée d'ES5</li>
+								<li data-fragment-index="9" class="fragment"><strong>2015&nbsp;:&nbsp;</strong>Arrivée d'ES6 : ES2015</li>
+								<li data-fragment-index="10" class="fragment"><strong>2016&nbsp;:&nbsp;</strong>Arrivée d'ES2016</li>
+								<li data-fragment-index="11" class="fragment"><strong>2017&nbsp;:&nbsp;</strong>Arrivée d'ES2017</li>
+								<li data-fragment-index="12" class="fragment">Et ainsi de suite...</li>
+							</ul>
+							<img data-fragment-index="2" class="fragment fade-in-then-out" src="assets/best-viewed-in-ie.png" alt="Best Viewed With Microsoft Internet Explorer. Click here to download Internet Explorer now">
+							<img data-fragment-index="3" class="fragment fade-in-then-out" src="assets/best-viewed-in-netscape.png" alt="Download Netscape navigator now">
+						</div>
+						<aside class="notes">
+							En 1996, Javascript sort comme partie de Netscape. Il devait, à l'origine, s'appeler LiveScript, ce qui aurait simplifié les choses pour énormément de choses.
+							Mais Netscape était partenaire de Sun Microsystems qui développait Java, donc bam : Javascript.
+							Javascript a été développé en 10 jours par Brendan Eich. À l'époque, on se cherchait un peu, on voulait aussi intégrer des trucs comme Java et Scheme.
+							Début 2000, IE a atteint une position écrasante, faisant, de fait, de JScript le standard pour le développement web.
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Le contexte frontend et ses spécificités</h2>
+						<img src="assets/frontend-vs-backend.jpg" alt="Meme frontend VS backend" class="r-stretch">
+					</section>
+					<section>
+						<h3>Aucun contrôle sur l'environnement d'exécution</h3>
+						<div class="r-stack">
+							<ul>
+								<li data-fragment-index="0" class="fragment fade-in-then-semi-out">L'utilisateur peut avoir un (très) vieux navigateur</li>
+								<li data-fragment-index="2" class="fragment">L'utilisateur peut avoir un navigateur du futur</li>
+							</ul>
+							<img src="assets/ie6.png" alt="Logo Internet Explorer 6" data-fragment-index="1" class="fragment fade-in-then-out white-bg">
+						</div>
+					</section>
+					<section>
+						<h3>On ne doit pas bloquer l'onglet</h3>
+						<div class="r-stack">
+							<ul>
+								<li data-fragment-index="0" class="fragment fade-in-then-semi-out">Beaucoup de traitements chronophages et sur lesquels on n'a pas le contrôle (Appels réseau...)</li>
+								<li data-fragment-index="2" class="fragment fade-in-then-semi-out">Nécessité de rendre la main au navigateur.</li>
+							</ul>
+							<img data-fragment-index="3" src="assets/page-unresponsive.png" alt="Fenêtre page unresponsive sur Google Chrome" class="fragment fade-in-then-out">
+						</div>
+					</section>
+					<section>
+						<h3>Pourquoi utiliser Javascript ?</h3>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">Originellement : modifier le DOM</li>
+							<li class="fragment">Effectuer des appels réseau (Ajax)</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Qu'est-ce que c'est, Javascript ?</h2>
+						<img src="assets/js-batman.png" alt="Générique de Batman écrit avec des conversions Javascript">
+					</section>
+					<section>
+						<h3>Les spécificités de Javascript</h3>
+					</section>
+					<section>
+						<h4>Langage interprété</h4>
+					</section>
+					<section>
+						<h4>Aspect « fonctionnel » inspiré de Scheme</h4>
+						<pre class="javascript">
+							<code data-trim data-line-numbers="2-3">
+								<script type="text/template">
+									const array = [1, 2, 3, 4, 5]
+									array.map(i => i + 1) // [2, 3, 4, 5, 6]
+									array.reduce((acc, i) => acc * i) // 120
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>Un langage asynchrone</h4>
+						<pre class="javascript">
+							<code data-trim>
+								<script type="text/template">
+									getUserFromServer(12, (err, user) => {
+										if (err) {
+											// Uh oh...
+											return console.error(err)
+										}
+										// La logique de votre traitement
+										console.log('1')
+									})
+									console.log('2')
+									// Ici, 2 s'affiche *avant* le 1
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h5>Les promesses</h5>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									getUserFromServer(12).then((user) => {
+										// La logique de votre traitement
+										console.log('1')
+									}, (err) => {
+										// Uh oh...
+										console.error(err)
+									})
+									console.log('2')
+									// Tout pareil
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h5>Async/await</h5>
+						<pre class="javascript">
+							<code data-trim data-line-numbers="2-9">
+								<script type="text/template">
+									(async () => {
+										try {
+											const user = await getUserFromServer(12)
+											// La logique de votre traitement
+											console.log('1')
+										} catch (err) {
+											// Uh oh...
+											console.error(err)
+										}
+									})()
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<p>Évidemment, le fonctionnel et l'asynchrone marchent très bien ensemble...</p>
+						<pre class="javascript">
+							<code data-trim data-line-numbers="2-11">
+								<script type="text/template">
+									(async () => {
+										const userIds = [2, 25, 144, 1312]
+										try {
+											const users = await Promise.all(
+												userIds.map(id => getUserFromServer(id))
+											)
+											// La logique une fois qu'on a nos users...
+										} catch (err) {
+											console.error(err)
+											// La logique si on a une erreur...
+										}
+									})
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>Typage dynamique</h4>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									let a = 1
+									a = 'string'
+									a = undefined
+									a = null
+									a = Symbol()
+									a = {
+										b: 12,
+										c: 'bonjour',
+									}
+									a = 42n
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h5>Conversions implicites</h5>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									'1' + 2 === '12'
+									1 + 2 === 3
+									'1' - 2 === -1
+									1 + {} === '1[object Object]' // Have fun !
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h5>Opérateur == particulier</h5>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									undefined == null
+									2 == '2'
+									[] == 0
+									'0' == 0
+									'' == 0
+									'' != []
+									'' != '0'
+									[] != '0'
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h5>Heureusement, on a ===</h5>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									undefined !== null
+									2 !== '2'
+									[] !== 0
+									'0' !== 0
+									'' !== 0
+									0 === 0
+									25 === 5 * 5
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>Orienté objets par prototype depuis toujours</h4>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									const user = {
+										username: 'name',
+										lastLogin: new Date(),
+										userType: 'admin',
+										email: 'example@email.tld',
+										sayHello() {
+											console.log(`${this.username} says hello!`)
+										}
+									}
+									user.sayHello() // name says hello!
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>Une approche aujourd'hui inhabituelle</h4>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									function User(username, email, userType = 'guest') {
+										this.username = username
+										this.email = email
+										this.userType = userType
+										this.lastLogin = new Date()
+									}
+
+									User.prototype.sayHello = function() {
+										console.log(`${this.username} says hello!`)
+									}
+
+									const user = new User('name', 'example@email.tld', 'admin')
+									user.sayHello() // name says hello!
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>Depuis ES2015, aussi orienté objets par classe</h4>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									class User {
+										constructor(username, email, userType = 'guest') {
+											this.username = username
+											this.email = email
+											this.userType = userType
+											this.lastLogin = new Date()
+										}
+										
+										sayHello() {
+											console.log(`${this.username} says hello!`)
+										}
+									}
+
+									const user = new User('name', 'example@email.tld', 'admin')
+									user.sayHello() // name says hello!
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Quelle différence entre Javascript et ECMAScript ?</h3>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">ECMAScript est le standard derrière Javascript, qui n'en est qu'une implémentation (et une marque déposée par Oracle)</li>
+							<li class="fragment fade-in-then-semi-out">C'est un des standards de l'ECMA : ECMA-262</li>
+							<li class="fragment fade-in-then-semi-out">Une nouvelle spec sort chaque année depuis 2015</li>
+							<li class="fragment fade-in-then-semi-out">C'est le TC39 qui se charge de la spécification de Javascript</li>
+							<li class="fragment fade-in">N'importe qui peut proposer une nouveauté dans ECMAScript</li>
+						</ul>
+						<aside class="notes">L'ECMA a en charge de nombreux autres standards, comme JSON (ECMA-404)</aside>
+					</section>
+					<section>
+						<h4>Comment arrivent les nouvelles fonctionnalités dans la spec ?</h4>
+						<ul>
+							<li class="fragment">Stage 0 : N'importe qui peut soumettre sa fonctionnalité</li>
+							<li class="fragment">Stage 1 : Un membre permanent du tc39 accepte la fonctionnalité</li>
+							<li class="fragment">Stage 2 : La spec est rédigée dans les grandes lignes</li>
+							<li class="fragment">Stage 3 : La spec est finalisée et revue</li>
+							<li class="fragment">Stage 4 : Les tests d'acceptation sont passés et la fonctionnalité est utilisée et on a un retour d'expérience.</li>
+						</ul>
+					</section>
+					<section>
+						<h5>Pourquoi il n'est plus nécessaire d'attendre longtemps avant d'utiliser les nouvelles fonctionnalités ?</h5>
+						<ul>
+							<li data-fragment-index="0" class="fragment fade-in-then-semi-out">Les navigateurs anciens n'existent quasiment plus</li>
+							<li data-fragment-index="1" class="fragment fade-in">Babel</li>
+						</ul>
+						<img src="assets/babel.svg" alt="Logo Babel" class="fragment" data-fragment-index="1">
+					</section>
+					<section>
+						<h5>Babel, c'est (littéralement) le futur</h5>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">Permet de transpiler quasiment toutes les features d'ESNext vers ES5</li>
+							<li class="fragment fade-in-then-semi-out">Supporte des plugins pour plein de trucs, y compris des proposals en stage 1 ou 2</li>
+							<li class="fragment fade-in">Transpile même des fonctionnalités qui n'ont pas pour vocation à être dans la spec (comme JSX)</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Les autres Javascripts...</h3>
+						<div class="r-stack">
+							<img class="fragment" src="assets/typescript.svg" alt="Logo Typescript">
+							<img class="fragment white-bg" src="assets/dart.svg" alt="Logo Dart">
+							<img class="fragment white-bg" src="assets/coffeescript.svg" alt="Logo Coffeescript">
+							<img src="assets/kotlin.svg" alt="Logo Kotlin" class="fragment white-bg">
+							<img src="assets/clojure.svg" alt="Logo Clojure" class="fragment white-bg">
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Les frameworks Javascript...</h2>
+						<img src="assets/frameworks-meme.png" alt="Meme frameworks" class="r-stretch">
+					</section>
+					<section data-auto-animate>
+						<pre data-id="jsx-block" class="javascript">
+							<code data-trim data-line-numbers="1-8" >
+								<script type="text/template">
+									const helloWorld = React.createElement('body', null,
 										React.createElement('h1', null, 'Hello World !'),
 										React.createElement('p', null, 'Hello world in JavaScript !'),
 										React.createElement('img', {
 											src: 'assets/helloworld.jpg',
 											alt: 'Hello world !',
 										})
-								)
-
-								const helloWorld = <body>
-									<h1>Hello World !</h1>
-									<p>Hello world in JavaScript !</p>
-									<img src="assets/helloworld.jpg" alt="Hello World !">
-								</body>
-							</script>
-						</code>
-					</pre>
+									)
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section data-auto-animate>
+						<pre data-id="jsx-block" class="javascript">
+							<code data-trim data-line-numbers="10-14">
+								<script type="text/template">
+									const helloWorld = React.createElement('body', null,
+											React.createElement('h1', null, 'Hello World !'),
+											React.createElement('p', null, 'Hello world in JavaScript !'),
+											React.createElement('img', {
+												src: 'assets/helloworld.jpg',
+												alt: 'Hello world !',
+											})
+									)
+	
+									const helloWorld = <body>
+										<h1>Hello World !</h1>
+										<p>Hello world in JavaScript !</p>
+										<img src="assets/helloworld.jpg" alt="Hello World !">
+									</body>
+								</script>
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Le Javascript et le frontend de demain...</h2>
+						<img src="assets/future.jpg" alt="Ville futuriste" class="r-stretch">
+					</section>
+					<section>
+						<h3>Les Progressive Web Apps (PWA)</h3>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">Comme des applications mobiles, mais en web</li>
+							<li class="fragment fade-in-then-semi-out">Décentralisé</li>
+							<li class="fragment fade-in-then-semi-out">Mal pris en charge chez Apple (étonnamment...)</li>
+							<li class="fragment fade-in">Super bien intégré dans les principaux frameworks frontend</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Les utilités multiples de Javascript...</h3>
+						<p>Depuis les années, Javascript peut être utilisé pour bien plus de choses que du frontend...</p>
+					</section>
+					<section>
+						<h4>Développement web backend</h4>
+						<div class="r-stack">
+							<img src="assets/nodejs.svg" alt="Logo nodejs" class="fragment">
+							<img src="assets/deno.svg" alt="Logo deno" class="fragment">
+						</div>
+						<aside class="notes">Node.js a été annoncé en 2009, ça a été un séisme. Deno en 2018</aside>
+					</section>
+					<section>
+						<h4>Applications mobiles</h4>
+						<div class="r-stack">
+							<img src="assets/cordova.png" alt="Logo Apache Cordova" class="fragment fade-in-then-out">
+							<img src="assets/react-native.svg" alt="Logo React Native" class="fragment" style="max-height: 600px;">
+						</div>
+					</section>
+					<section>
+						<h4>Applications desktop</h4>
+						<div class="r-stack">
+							<img src="assets/electron.svg" alt="Logo Electron" class="fragment">
+						</div>
+					</section>
+					<section>
+						<h4>De l'embarqué</h4>
+						<div class="r-stack">
+							<img src="assets/johnny-five.svg" alt="Logo Johnny Five" class="fragment">
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Merci de m'avoir écouté !</h3>
+						<p>Des questions ?</p>
+					</section>
+					<section>
+						<p>Vous pouvez retrouver la présentation sur <a href="https://yanbuatois.github.io/worksession-mars-2022/">https://yanbuatois.github.io/worksession-mars-2022/</a></p>
+					</section>
 				</section>
 			</div>
 		</div>

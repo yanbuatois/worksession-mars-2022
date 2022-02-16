@@ -16,3 +16,19 @@
 * jQuery !!!
 
 ### 
+
+-------------------
+
+## Qu'est-ce que Javascript ?
+
+### Bref historique
+
+* 1996 : JavaScript
+* 1998 : IE5.0 -> ActiveX -> XMLHttpRequest. Plus globalement : guerre des navigateurs
+* Versions de Javascript :
+  * ES1 : 1997
+  * ES2 : 1998
+  * ES3 : 1999
+  * ES4 : Abandonnée
+  * ES5 : 2009
+  * ES2015 
