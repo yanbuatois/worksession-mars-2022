@@ -129,6 +129,62 @@
 						</div>
 					</section>
 					<section>
+						<h4>Petit exemple du risque de "casser internet" : var</h4>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									console.log(a) // affiche "undefined"
+									var a = 14
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>Petit exemple du risque de "casser internet" : var</h4>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									var i = 14
+									if (i < 25) {
+										var i = 35
+										// On fait des trucs avec notre variable i
+									}
+									console.log(i) // Affiche 35
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section data-auto-animate>
+						<h4 data-id="let-const-title">La seule solution : changer de mot-clé</h4>
+						<pre data-id="let-const-block" class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									let i = 14
+									if (i < 25) {
+										let i = 35
+										// On fait des trucs avec notre variable i
+									}
+									console.log(i) // Affiche bien 14
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section data-auto-animate>
+						<h4 data-id="let-const-title">La seule solution : changer de mot-clé</h4>
+						<pre data-id="let-const-block" class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									const i = 14
+									if (i < 25) {
+										const i = 35
+										// On fait des trucs avec notre variable i
+									}
+									console.log(i) // Affiche bien 14
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
 						<h3>On ne doit pas bloquer l'onglet</h3>
 						<div class="r-stack">
 							<ul>
@@ -137,6 +193,10 @@
 							</ul>
 							<img data-fragment-index="3" src="assets/page-unresponsive.png" alt="Fenêtre page unresponsive sur Google Chrome" class="fragment fade-in-then-out">
 						</div>
+					</section>
+					<section>
+						<h3>La sécurité</h3>
+						<p>Il faut absolument protéger l'utilisateur contre des sites web potentiellement malveillants.</p>
 					</section>
 					<section>
 						<h3>Pourquoi utiliser Javascript ?</h3>
@@ -377,6 +437,60 @@
 						</pre>
 					</section>
 					<section>
+						<p>Mais quelques trucs sympas avec les classes...</p>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+										const encapsulateNumberInClass = (number) => class {
+											getNumber() {
+												return number
+											}
+										}
+										
+										const Encapsulated3 = encapsulateNumberInClass(3)
+										const myEncapsulated3 = new Encapsulated3()
+										myEncapsulated3.getNumber() // 3
+
+										const myEncapsulated42 = new (encapsulateNumberInClass(42))()
+										myEncapsulated42.getNumber() // 42
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<p>Voire ça...</p>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									class Square extends (class {
+										constructor(x, y, height, width) {
+											this.x = x
+											this.y = y
+											this.height = height
+											this.width = width
+										}
+
+										get perimeter() {
+											return (this.height * 2) + (this.width * 2)
+										}
+
+										get area() {
+											return this.height * this.width
+										}
+									}) {
+										constructor(x, y, edge) {
+											super(x, y, edge, edge)
+										}
+									}
+
+									const mySquare = new Square(0, 0, 14)
+									mySquare.area // 196
+									mySquare.perimeter // 56
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
 						<h3>Quelle différence entre Javascript et ECMAScript ?</h3>
 						<ul>
 							<li class="fragment fade-in-then-semi-out">ECMAScript est le standard derrière Javascript, qui n'en est qu'une implémentation (et une marque déposée par Oracle)</li>
@@ -390,11 +504,11 @@
 					<section>
 						<h4>Comment arrivent les nouvelles fonctionnalités dans la spec ?</h4>
 						<ul>
-							<li class="fragment">Stage 0 : N'importe qui peut soumettre sa fonctionnalité</li>
-							<li class="fragment">Stage 1 : Un membre permanent du tc39 accepte la fonctionnalité</li>
+							<li class="fragment">Stage 0 : N'importe qui peut soumettre sa proposition</li>
+							<li class="fragment">Stage 1 : Un membre permanent du tc39 accepte d'être le "champion" de la proposition, et de la soumettre au comité</li>
 							<li class="fragment">Stage 2 : La spec est rédigée dans les grandes lignes</li>
 							<li class="fragment">Stage 3 : La spec est finalisée et revue</li>
-							<li class="fragment">Stage 4 : Les tests d'acceptation sont passés et la fonctionnalité est utilisée et on a un retour d'expérience.</li>
+							<li class="fragment">Stage 4 : Les tests d'acceptation sont passés et la fonctionnalité est utilisée et on a un retour d'expérience</li>
 						</ul>
 					</section>
 					<section>
@@ -429,7 +543,140 @@
 						<h2>Les frameworks Javascript...</h2>
 						<img src="assets/frameworks-meme.png" alt="Meme frameworks" class="r-stretch">
 					</section>
-					<section data-auto-animate>
+					<section>
+						<h3>Pourquoi utiliser des frameworks ?</h3>
+						<ul>
+							<li class="fragment">Faciliter la manipulation du DOM</li>
+							<li class="fragment">Pallier aux manques du langage</li>
+						</ul>
+					</section>
+					<section>
+						<h4>L'exemple de l'Ajax</h4>
+						<pre data-id="ajax-block" class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									var xhr = new XMLHttpRequest()
+
+									xhr.open('GET', '/api/users')
+									xhr.responseType = 'json'
+									
+									xhr.send()
+									xhr.onload = function() {
+										if (xhr.status != 200) {
+											console.log(
+												'Une erreur '
+												+ xhr.status
+												+ ' est survenue : '
+												+ xhr.statusText
+											)
+										} else {
+											var response = xhr.response
+											// Je traite ma réponse
+										}
+									}
+									
+									xhr.onerror = function() {
+										console.error('La requête a échoué')
+									}
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>L'exemple de l'Ajax</h4>
+						<pre data-id="ajax-block" class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									$.get({
+										url: '/api/users',
+										dataType: 'json',
+										error: function() {
+											console.error('La requête a échoué.')
+										},
+										success: function(response, textStatus, xhr) {
+											if (xhr.status !== 200) {
+												console.log(
+													'Une erreur '
+													+ xhr.status
+													+ ' est survenue : '
+													+ xhr.statusText
+												)
+											} else {
+												// Je traite ma réponse
+											}
+										}
+									})
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>L'exemple de l'Ajax</h4>
+						<pre data-id="ajax-block" class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									fetch('/api/users')
+										.then(res => {
+											if (res.status !== 200) {
+												console.log(
+													'Une erreur '
+													+ xhr.status
+													+ ' est survenue : '
+													+ xhr.statusText
+												)
+											} else {
+												res.json().then(response => {
+													// Je traite ma réponse
+												})
+											}
+										})
+										.catch(err => {
+											console.error('La requête a échoué.', err)
+										})
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<p>Aujourd'hui, le langage a évolué, mais les besoins aussi, les frameworks ne sont donc plus les mêmes.</p>
+						<small><a href="https://youmightnotneedjquery.com/">https://youmightnotneedjquery.com/</a></small>
+					</section>
+					<section>
+						<h3>Les frameworks Javascript modernes</h3>
+					</section>
+					<section>
+						<p>Il y en a plein, mais les plus connus restent...</p>
+						<ul>
+							<li>React</li>
+							<li>Vue.js</li>
+							<li>Angular</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Quelques points communs...</h4>
+					</section>
+					<section>
+						<h5>Ils sont orientés composants</h5>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">Les applications sont conçues sous la forme de composants réutilisables</li>
+							<li class="fragment fade-in-then-semi-out">Les composants gèrent leur propre état et comportement</li>
+							<li class="fragment">Les composants sont composés d'autres composants</li>
+						</ul>
+					</section>
+					<section>
+						<h4>React, le leader</h4>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">Le framework frontend le plus utilisé</li>
+							<li class="fragment fade-in-then-semi-out">Développé et utilisé par Facebook</li>
+							<li class="fragment fade-in-then-semi-out">84% de satisfaction parmi ses utilisateurs (selon <a href="https://2021.stateofjs.com/en-US/libraries/front-end-frameworks">StateOfJs</a>)</li>
+							<li class="fragment">Vendu comme une bibliothèque, et non comme un framework</li>
+						</ul>
+					</section>
+					<section>
+						<p>Dans React, HTML, Javascript et CSS sont mélangés au sein des composants, et la syntaxe JSX est privilégiée.</p>
+					</section>
+					<section data-auto-animate data-auto-animate-restart>
+						<h5 data-id="title">Petit exemple de JSX</h5>
 						<pre data-id="jsx-block" class="javascript">
 							<code data-trim data-line-numbers="1-8" >
 								<script type="text/template">
@@ -446,6 +693,7 @@
 						</pre>
 					</section>
 					<section data-auto-animate>
+						<h5 data-id="title">Petit exemple de JSX</h5>
 						<pre data-id="jsx-block" class="javascript">
 							<code data-trim data-line-numbers="10-14">
 								<script type="text/template">
@@ -458,14 +706,192 @@
 											})
 									)
 	
-									const helloWorld = <body>
+									const helloWorld = (<body>
 										<h1>Hello World !</h1>
 										<p>Hello world in JavaScript !</p>
 										<img src="assets/helloworld.jpg" alt="Hello World !">
-									</body>
+									</body>)
 								</script>
 							</code>
 						</pre>
+					</section>
+					<section>
+						<h5>En pratique, ça donne ça</h5>
+						<pre class="javascript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									import React, { useState } from 'react'
+									import styled from 'styled-components'
+
+									const Button = styled.button`
+									background-color: red;
+									`
+
+									function CountButton({
+										initialCount = 0,
+									}) {
+										const [count, setCount] = useState(initialCount)
+
+										const handleClick = () => {
+											setCount(count + 1)
+										}
+
+										return (
+											<Button onClick={handleClick}>
+												Clicked {count} times.
+											</Button>
+										)
+									}
+
+									export default CountButton
+
+									// Et chez l'utilisateur...
+									<CountButton initialCount={3} />
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h5>React utilise le DOM Virtuel</h5>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">Copie du DOM plus légère, qui est modifiée par React</li>
+							<li class="fragment fade-in-then-semi-out">Le DOM virtuel est régulièrement "réconcilié" avec le DOM réel</li>
+							<li class="fragment fade-in-then-semi-out">Cela permet de meilleures performances, puisque les modifications du DOM sont des opérations lourdes.</li>
+							<li class="fragment">Ça permet également d'utiliser cette abstraction pour totalement autre chose (les apps mobile, par exemple)</li>
+						</ul>
+					</section>
+					<section>
+						<h5>Mais React a quelques inconvénients...</h5>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">Nécessite beaucoup de code pour commencer à fonctionner</li>
+							<li class="fragment">Une courbe de progression des enfers</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Angular, l'ancêtre...</h4>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">Développé par Google depuis 2016 (et basé sur AngularJS datant de 2009)</li>
+							<li class="fragment fade-in-then-semi-out">Vraiment prévu pour être utilisé avec TypeScript</li>
+							<li class="fragment fade-in-then-semi-out">« Vrai » framework</li>
+							<li class="fragment fade-in-then-semi-out">Le CSS, le HTML et le TypeScript sont complètement séparés</li>
+							<li class="fragment fade-in-then-semi-out">MVC strict</li>
+							<li class="fragment">Seulement 45% de satisfaction chez ses utilisateurs (toujours selon StateOfJs)</li>
+						</ul>
+					</section>
+					<section>
+						<h5>Un peu plus de code à écrire pour un composant...</h5>
+						<pre class="typescript">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									// count-button.component.ts
+									import { Component } from '@angular/core'
+									
+									@Component({
+										selector: 'app-count-button',
+										templateUrl: './count-button.component.html',
+										styleUrls: ['./count-button.component.css'],
+									})
+									export class CountButton {
+										count = 0
+									
+										handleClick() {
+											this.count++
+										}
+									}
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h5>Un peu plus de code à écrire pour un composant...</h5>
+						<pre class="html">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									<!-- count-button.component.html -->
+									<button class="count-button" (click)="handleClick()">
+										Clicked {count} times.
+									</button>
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h5>Un peu plus de code à écrire pour un composant...</h5>
+						<pre class="css">
+							<code data-trim data-line-numbers>
+								<script type="text/template">
+									/* count-button.component.css */
+									.count-button {
+										background-color: red;
+									}
+								</script>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h5>Angular n'utilise pas de DOM virtuel...</h5>
+						<p>...mais il utilise le <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM"><em>Shadow DOM</em></a></p>
+					</section>
+					<section>
+						<h5>Mais là-aussi, quelques inconvénients</h5>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">Assez verbeux, beaucoup de code et de fichiers nécessaires pour des composants simples.</li>
+							<li class="fragment fade-in-then-semi-out">Nécessite aussi beaucoup de code « boilerplate »</li>
+							<li class="fragment fade-in">Assez difficile à apprendre également</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Vue.js, le challenger</h4>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">Projet « véritablement » opensource, créé en 2014 par un ancien de chez Google</li>
+							<li class="fragment fade-in-then-semi-out">Conçu comme un Angular, mais plus léger</li>
+							<li class="fragment fade-in-then-semi-out">Beaucoup moins de code boilerplate que chez les deux autres</li>
+							<li class="fragment fade-in-then-semi-out">HTML, CSS et Javascript sont généralement séparés, mais ce n'est pas nécessaire (et on peut même utiliser JSX)</li>
+							<li class="fragment fade-in">80% de satisfaction selon StateOfJs.</li>
+						</ul>
+					</section>
+					<section>
+						<h5>Petit exemple de composant Vue.js</h5>
+						<pre class="html">
+							<code data-trim data-line-numbers>
+									<script>
+										export default {
+											name: 'CountButton',
+											data() {
+												return {
+													count: this.defaultCounter,
+												}
+											},
+											props: {
+												defaultCount: {
+													default: 0,
+													type: Number,
+												}
+											},
+											methods: {
+												handleClick() {
+													this.count++
+												}
+											}
+										}
+									</script>
+									
+									<template>
+										<button @click="handleClick">
+											Clicked {{ count }} times.
+										</button>
+									</template>
+									
+									<style>
+										button {
+											background-color: red;
+										}
+									</style>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<p>Plus facile à utiliser que les 2 autres, il reste assez verbeux, et les développeurs peuvent préférer l'approche de React.</p>
 					</section>
 				</section>
 				<section>
@@ -480,6 +906,13 @@
 							<li class="fragment fade-in-then-semi-out">Décentralisé</li>
 							<li class="fragment fade-in-then-semi-out">Mal pris en charge chez Apple (étonnamment...)</li>
 							<li class="fragment fade-in">Super bien intégré dans les principaux frameworks frontend</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Le développement des APIs des navigateurs</h3>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">L'API FileSystem</li>
+							<li class="fragment fade-in">L'API de contrôle de la mise en veille</li>
 						</ul>
 					</section>
 					<section>
@@ -505,6 +938,14 @@
 						<h4>Applications desktop</h4>
 						<div class="r-stack">
 							<img src="assets/electron.svg" alt="Logo Electron" class="fragment">
+						</div>
+					</section>
+					<section>
+						<h4>Du jeu vidéo</h4>
+						<div class="r-stack">
+							<img src="assets/webgl.svg" alt="Logo WebGL" class="fragment fade-in-then-out">
+							<img src="assets/p5js.svg" alt="Logo p5.js" class="fragment fade-in-then-out">
+							<img src="assets/unity.svg" alt="Logo Unity" class="fragment fade-in">
 						</div>
 					</section>
 					<section>
