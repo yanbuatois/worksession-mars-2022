@@ -383,7 +383,7 @@ section.has-light-background p, section.has-light-background h1, section.has-lig
 }
 
 .reveal {
-  background-image: url("/assets/logo-corner.png");
+  background-image: url("../../assets/logo-corner.png");
   background-position: top 2% right 2%;
   background-repeat: no-repeat;
   background-size: 10%;
