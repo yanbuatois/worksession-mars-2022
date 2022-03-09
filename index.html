@@ -424,7 +424,7 @@
 											this.userType = userType
 											this.lastLogin = new Date()
 										}
-										
+
 										sayHello() {
 											console.log(`${this.username} says hello!`)
 										}
@@ -446,7 +446,7 @@
 												return number
 											}
 										}
-										
+
 										const Encapsulated3 = encapsulateNumberInClass(3)
 										const myEncapsulated3 = new Encapsulated3()
 										myEncapsulated3.getNumber() // 3
@@ -559,7 +559,7 @@
 
 									xhr.open('GET', '/api/users')
 									xhr.responseType = 'json'
-									
+
 									xhr.send()
 									xhr.onload = function() {
 										if (xhr.status != 200) {
@@ -574,7 +574,7 @@
 											// Je traite ma réponse
 										}
 									}
-									
+
 									xhr.onerror = function() {
 										console.error('La requête a échoué')
 									}
@@ -705,7 +705,7 @@
 												alt: 'Hello world !',
 											})
 									)
-	
+
 									const helloWorld = (<body>
 										<h1>Hello World !</h1>
 										<p>Hello world in JavaScript !</p>
@@ -785,7 +785,7 @@
 								<script type="text/template">
 									// count-button.component.ts
 									import { Component } from '@angular/core'
-									
+
 									@Component({
 										selector: 'app-count-button',
 										templateUrl: './count-button.component.html',
@@ -793,7 +793,7 @@
 									})
 									export class CountButton {
 										count = 0
-									
+
 										handleClick() {
 											this.count++
 										}
@@ -875,13 +875,13 @@
 											}
 										}
 									</script>
-									
+
 									<template>
 										<button @click="handleClick">
 											Clicked {{ count }} times.
 										</button>
 									</template>
-									
+
 									<style>
 										button {
 											background-color: red;
@@ -982,6 +982,7 @@
 				slideNumber: 'h.v',
 				hasOneBasedIndex: true,
 				hash: true,
+				totalTime: 2 * 60 * 60,
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom ]
